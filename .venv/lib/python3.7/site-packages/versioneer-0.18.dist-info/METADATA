@@ -1,0 +1,24 @@
+Metadata-Version: 2.0
+Name: versioneer
+Version: 0.18
+Summary: Easy VCS-based management of project version strings
+Home-page: https://github.com/warner/python-versioneer
+Author: Brian Warner
+Author-email: warner-versioneer@lothar.com
+License: public domain
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.2
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+
+Versioneer is a tool to automatically update version strings (in setup.py and
+the conventional 'from PROJECT import _version' pattern) by asking your
+version-control system about the current tree.
+
+
