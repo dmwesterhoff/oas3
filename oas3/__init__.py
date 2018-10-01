@@ -46,7 +46,7 @@ class Spec(BaseObject):
     class Schema(BaseSchema):
         openapi = fields.Str(required=True)
         info = fields.Nested(Info.Schema, required=True)
-        paths = fields.Dict(keys=fields.Str, values=Path.Schema)
+        paths = fields.Dict(required=True, keys=fields.Str, values=Path.Schema)
         servers = fields.List(fields.Nested(Server.Schema))
         components = fields.Nested(Components.Schema)
         security = fields.List(fields.Dict(keys=fields.Str,
