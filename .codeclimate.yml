@@ -1,4 +1,0 @@
-exclude_paths:
-  - versioneer.py
-  - oas3/_version.py
-  - tests/*
