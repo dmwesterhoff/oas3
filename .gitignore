@@ -10,3 +10,4 @@ htmlcov
 *egg-info*
 .cache
 .eggs
+.venv
