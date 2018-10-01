@@ -42,7 +42,7 @@ def get_config():
     cfg.VCS = "git"
     cfg.style = "pep440"
     cfg.tag_prefix = ""
-    cfg.parentdir_prefix = "oas3-"
+    cfg.parentdir_prefix = "oas3"
     cfg.versionfile_source = "oas3/_version.py"
     cfg.verbose = False
     return cfg
