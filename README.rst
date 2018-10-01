@@ -35,7 +35,7 @@ To get started load your spec, it will be validated upon dumping.
    # Load the Spec from a python native dictionary
    spec = Spec.from_dict(spec_dict)
 
-   # A spec that is sufficiently load (i.e. valid OAS3) can now be dumped
+   # A spec that is sufficiently loaded (i.e. valid OAS3) can now be dumped
    spec.to_file('/tmp/spec.yaml')
    spec.to_dict()
    spec.to_json()
