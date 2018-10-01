@@ -28,6 +28,5 @@ setup(
     classifiers=[k for k in open('CLASSIFIERS').read().split('\n') if k],
     description='A library for dealing with Open API v3 specifications in Python',
     long_description=open('README.rst').read() + open('HISTORY.rst').read(),
-    packages=find_packages(exclude=["tests*"]),
-    entry_points={'flask.commands': ['oas3=flask_oas3.commands:cli']}
+    packages=find_packages(exclude=["tests*"])
 )

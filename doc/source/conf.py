@@ -6,7 +6,7 @@ import os
 
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.append(os.path.abspath('_themes'))
-import flask_limiter
+import oas3
 
 extensions = [
     'sphinx.ext.autodoc',
@@ -18,10 +18,10 @@ extensions = [
 templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
-project = u'Flask-Limiter'
-copyright = u'2014, Ali-Akber Saifee'
+project = u'OAS3'
+copyright = u'2018, Pinn Technologies, Inc.'
 
-version = release = flask_limiter.__version__
+version = release = oas3.__version__
 exclude_patterns = []
 pygments_style = 'sphinx'
 html_theme_options = {
@@ -30,11 +30,11 @@ html_theme_options = {
 html_theme_path = ["_themes"]
 html_theme = 'flask'
 html_static_path = ['_static']
-html_style = 'limiter.css'
+#html_style = 'limiter.css'
 
-htmlhelp_basename = 'Flask-Ratelimitdoc'
-html_logo = 'tap-logo.png'
-html_favicon = 'tap-icon.png'
+htmlhelp_basename = 'oas3doc'
+#html_logo = 'tap-logo.png'
+#html_favicon = 'tap-icon.png'
 html_sidebars = {
     'index': ['sidebarintro.html', 'localtoc.html', 'sourcelink.html', 'searchbox.html'],
     '**': ['localtoc.html', 'relations.html',
@@ -42,25 +42,21 @@ html_sidebars = {
 }
 
 latex_documents = [
-    ('index', 'Flask-Limiter.tex', u'Flask-Limiter Documentation',
-     u'Ali-Akber Saifee', 'manual'),
+    ('index', 'OAS3.tex', u'OAS3 Documentation',
+     u'Pinn Technologies, Inc.', 'manual'),
 ]
 man_pages = [
-    ('index', 'flask-limiter', u'Flask-Limiter Documentation',
-     [u'Ali-Akber Saifee'], 1)
+    ('index', 'OAS3.text', u'OAS3 Documentation',
+     [u'Pinn Technologies, Inc.'], 1)
 ]
 
 texinfo_documents = [
-    ('index', 'Flask-Limiter', u'Flask-Limiter Documentation',
-     u'Ali-Akber Saifee', 'Flask-Limiter', 'One line description of project.',
+    ('index', 'OAS3', u'OAS3 Documentation',
+     u'Pinn Technologies, Inc.', 'OAS3', 'OAS3 Python Library.',
      'Miscellaneous'),
 ]
 
 intersphinx_mapping = {'python': ('http://docs.python.org/', None)
-    , 'flask': ("http://flask.pocoo.org/docs/", None)
-    , 'werkzeug': ("http://werkzeug.pocoo.org/docs/", None)
-    , 'limits': ("http://limits.readthedocs.org/en/latest/", None)
-    , 'flaskrestful': ('http://flask-restful.readthedocs.org/en/latest/', None)
 }
 
 autodoc_default_flags = [

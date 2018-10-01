@@ -1,8 +1,6 @@
 sudo: false
 language: python
 python:
-    - "2.6"
-    - "2.7"
     - "3.5"
     - "pypy"
     - "pypy-5.3"
@@ -14,6 +12,6 @@ services:
     - redis-server
     - memcached
 
-script: nosetests tests --with-cov -v
+script: nosetests tests --with-coverage --with-doctest -v
 after_success:
     - coveralls

@@ -1,0 +1,7 @@
+[pygments.styles]
+flasky = flask_sphinx_themes.pygments:FlaskyStyle
+
+[sphinx.html_themes]
+flask = flask_sphinx_themes
+flask_small = flask_sphinx_themes
+
