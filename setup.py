@@ -16,7 +16,7 @@ REQUIREMENTS = filter(None, open(
 import versioneer
 
 setup(
-    name='OAS3',
+    name='oas3',
     author=__author__,
     author_email=__email__,
     license="MIT",
