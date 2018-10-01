@@ -33,7 +33,7 @@ html_static_path = ['_static']
 #html_style = 'limiter.css'
 
 htmlhelp_basename = 'oas3doc'
-#html_logo = 'tap-logo.png'
+#html_logo = 'small-logo.png'
 #html_favicon = 'tap-icon.png'
 html_sidebars = {
     'index': ['sidebarintro.html', 'localtoc.html', 'sourcelink.html', 'searchbox.html'],
