@@ -41,16 +41,16 @@ class Operation(BaseObject):
         def represents(self):
             return Operation
 
-        def __init__(self, responses, tags=None, summary=None, description=None, external_docs=None, operation_id=None, parameters=None, request_body=None, callbacks=None, deprecated=None, security=None, servers=None):
-            self.responses = responses
-            self.tags = tags
-            self.summary = summary
-            self.description = description
-            self.external_docs = external_docs
-            self.operation_id = operation_id
-            self.parameters = parameters
-            self.request_body = request_body
-            self.callbacks = callbacks
-            self.deprecated = deprecated
-            self.security = security
-            self.servers = servers
+    def __init__(self, responses, tags=None, summary=None, description=None, external_docs=None, operation_id=None, parameters=None, request_body=None, callbacks=None, deprecated=None, security=None, servers=None):
+        self.responses = responses
+        self.tags = tags
+        self.summary = summary
+        self.description = description
+        self.external_docs = external_docs
+        self.operation_id = operation_id
+        self.parameters = parameters
+        self.request_body = request_body
+        self.callbacks = callbacks
+        self.deprecated = deprecated
+        self.security = security
+        self.servers = servers

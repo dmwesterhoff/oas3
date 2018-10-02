@@ -100,12 +100,14 @@ class BaseObject:
     def from_raw(cls, data):
         try:
             return cls.from_yaml(data)
-        except:
-            pass
+        except Exception as e:
+            print(e)
+            return
         try:
             return cls.from_json(data)
         except:
-            pass
+            print(e)
+            return
         raise ValidationError('Unable to detect valid JSON or YAML in data.')
 
     def to_dict(self):
