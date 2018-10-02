@@ -10,7 +10,6 @@ from .operation import Operation
 from oas3.objects.components.parameter import Parameter
 
 
-
 class Path(BaseObject):
     """
     Adds metadata to a single tag that is used by the Operation Object.

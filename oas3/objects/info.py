@@ -3,9 +3,6 @@ oas3.objects.info
 ~~~~~~~~~~~~~~~~~
 """
 
-import yaml
-from pprint import pformat
-from inspect import cleandoc
 from marshmallow import fields
 from oas3.base import BaseObject, BaseSchema
 
@@ -63,7 +60,7 @@ class Info(BaseObject):
         version = fields.Str(required=True)
         title = fields.Str(required=True)
         description = fields.Str(required=False)
-        terms_of_service = fields.Str(load_from='termsOfService')
+        terms_of_service = fields.Str(load_from='termsOfService', dump_to='termsOfService')
         contact = fields.Nested(Contact.Schema)
         license = fields.Nested(License.Schema)
 

@@ -71,8 +71,8 @@ class BaseObject:
     def from_dict(cls, dictionary):
         result, errors = cls.Schema().load(dictionary)
         if errors:
-            raise ValidationError("Validation error encountered in [{}] ".format(cls.__name__) \
-                                  + str(errors))
+            raise ValidationError("Validation error encountered in [{}] ".format(cls.__name__) +
+                                  str(errors))
         return result
 
     @classmethod

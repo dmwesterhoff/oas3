@@ -16,9 +16,12 @@ class OAuthFlow(BaseObject):
     """
 
     class Schema(BaseSchema):
-        authorization_url = fields.Url(load_from='authorizationUrl')
-        token_url = fields.Url(load_from='tokenUrl')
-        refresh_url = fields.Url(load_from='refreshUrl')
+        authorization_url = fields.Url(load_from='authorizationUrl',
+                                       dump_to='authorizationUrl')
+        token_url = fields.Url(load_from='tokenUrl',
+                               dump_to='tokenUrl')
+        refresh_url = fields.Url(load_from='refreshUrl',
+                                 dump_to='refreshUrl')
         scopes = fields.Dict(keys=fields.Str, values=fields.Str)
 
         def represents(self):
@@ -42,8 +45,12 @@ class OAuthFlows(BaseObject):
     class Schema(BaseSchema):
         implicit = fields.Nested(OAuthFlow.Schema)
         password = fields.Nested(OAuthFlow.Schema)
-        client_credentials = fields.Nested(OAuthFlow.Schema, load_from='clientCredentials')
-        authorization_code = fields.Nested(OAuthFlow.Schema, load_from='authorizationCode')
+        client_credentials = fields.Nested(OAuthFlow.Schema,
+                                           load_from='clientCredentials',
+                                           dump_to='clientCredentials')
+        authorization_code = fields.Nested(OAuthFlow.Schema,
+                                           load_from='authorizationCode',
+                                           dump_to='clientCredentials')
 
         def represents(self):
             return OAuthFlows
@@ -68,14 +75,18 @@ class SecurityScheme(BaseObject):
     """
 
     class Schema(BaseSchema):
-        scheme_type = fields.Str(required=True, load_from='type')
+        scheme_type = fields.Str(required=True,
+                                 load_from='type',
+                                 dump_to='type')
         description = fields.Str()
         name = fields.Str()
         location = fields.Str()
         scheme = fields.Str()
-        bearer_format = fields.Str(load_from='bearerFormat')
+        bearer_format = fields.Str(load_from='bearerFormat',
+                                   dump_to='bearerFormat')
         flows = fields.Nested(OAuthFlows.Schema)
-        open_id_connect_url = fields.Url(load_from='openIdConnectUrl')
+        open_id_connect_url = fields.Url(load_from='openIdConnectUrl',
+                                         dump_to='openIdConnectUrl')
 
         def represents(self):
             return SecurityScheme

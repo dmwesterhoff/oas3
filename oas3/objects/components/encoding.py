@@ -16,11 +16,13 @@ class Encoding(BaseObject):
     """
 
     class Schema(BaseSchema):
-        content_type = fields.Str(load_from='contentType')
+        content_type = fields.Str(load_from='contentType',
+                                  dump_to='contentType')
         headers = fields.Dict(keys=fields.Str, values=fields.Dict)
         style = fields.Str()
         explode = fields.Bool()
-        allow_reserved = fields.Bool(load_from='allowReserved')
+        allow_reserved = fields.Bool(load_from='allowReserved',
+                                     dump_to='allowReserved')
 
         def represents(self):
             return Encoding

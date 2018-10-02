@@ -20,10 +20,13 @@ class Link(BaseObject):
     """
 
     class Schema(BaseSchema):
-        operation_ref = fields.Str(load_from='operationRef')
-        operation_id = fields.Str(load_from='operationId')
+        operation_ref = fields.Str(load_from='operationRef',
+                                   dump_to='operationRef')
+        operation_id = fields.Str(load_from='operationId',
+                                  dump_to='operationId')
         parameters = fields.Dict(keys=fields.Str, values=fields.Dict)
-        request_body = fields.Dict(load_from='requestBody')
+        request_body = fields.Dict(load_from='requestBody',
+                                   dump_to='requestBody')
         description = fields.Str()
         server = fields.Nested(Server.Schema)
 

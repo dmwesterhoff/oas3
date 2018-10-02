@@ -1,4 +1,4 @@
-from oas3 import Spec, Path
+from oas3 import Spec, Path, Info, Components
 
 
 def test_import():
@@ -60,6 +60,101 @@ def pets():
 
 def test_load_path_docstring():
     path = Path.from_docstring(pets)
+    path.to_dict()
+
+
+class SpecInfo:
+    """
+    version: 1.0.0
+    title: Petstore
+    description: Just an example Petstore API
+    termsOfService: https://example.com/tos
+    contact:
+      name: API support
+      url: http://www.example.com/support
+      email: support@example.com
+    license:
+      name: MIT
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+    """
+    pass
+
+
+class SpecComponents:
+    """
+    schemas:
+      Pet:
+        required:
+          - id
+          - name
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          tag:
+            type: string
+      Pets:
+        type: array
+        items:
+          $ref: "#/components/schemas/Pet"
+      Error:
+        required:
+          - code
+          - message
+        properties:
+          code:
+            type: integer
+            format: int32
+          message:
+            type: string
+    """
+
+class SpecComponents:
+    """
+    schemas:
+      Pet:
+        required:
+          - id
+          - name
+        properties:
+          id:
+            type: integer
+            format: int64
+          name:
+            type: string
+          tag:
+            type: string
+      Pets:
+        type: array
+        items:
+          $ref: "#/components/schemas/Pet"
+      Error:
+        required:
+          - code
+          - message
+        properties:
+          code:
+            type: integer
+            format: int32
+          message:
+            type: string
+    """
+
+def test_load_info_docstring():
+    info = Info.from_docstring(SpecInfo)
+    assert 'termsOfService' in info.to_dict()
+
+
+def test_compile_spec():
+    info = Info.from_docstring(SpecInfo)
+    components = Components.from_docstring(SpecComponents)
+    paths = {'/pets': Path.from_docstring(pets)}
+    spec = Spec(info=info, openapi='3.0.0', paths=paths, components=components)
+    dictionary = spec.to_dict()
+    assert 'paths' in dictionary
+    json_string = spec.to_json()
 
 
 def test_from_url_json():

@@ -4,6 +4,7 @@ oas3.errors
 Defines custom pacakage specific exceptions.
 """
 
+
 class ValidationError(Exception):
     pass
 

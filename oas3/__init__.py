@@ -8,16 +8,7 @@ as a core library for creating higher level OAS3 packages.
 
 # Versioneer
 # ----------
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions
-
-
-import pathlib
-import json
-import yaml
-import requests
-from marshmallow import fields, post_load, post_dump
+from marshmallow import fields
 from .base import BaseObject, BaseSchema
 from .objects.info import Info
 from .objects.server import Server
@@ -25,7 +16,10 @@ from .objects.components import Components
 from .objects.tag import Tag
 from .objects.external_docs import ExternalDocs
 from .objects.path import Path
-from .errors import LoadingError, DumpingError, ValidationError
+from .errors import LoadingError, DumpingError, ValidationError  # NOQA
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
 
 
 class Spec(BaseObject):
@@ -52,7 +46,9 @@ class Spec(BaseObject):
         security = fields.List(fields.Dict(keys=fields.Str,
                                            values=fields.List(fields.Str)))
         tags = fields.List(fields.Nested(Tag.Schema))
-        external_docs = fields.Nested(ExternalDocs.Schema, load_from='externalDocs')
+        external_docs = fields.Nested(ExternalDocs.Schema,
+                                      load_from='externalDocs',
+                                      dump_to='externalDocs')
 
         def represents(self):
             return Spec
@@ -75,10 +71,14 @@ class Spec(BaseObject):
         self.tags = tags
         self.external_docs = external_docs
 
-
-
-
-
-# from .oas3 import OAS3
-# from . import objects
-# from . import primitives
+    def to_dict(self):
+        data, errors = self.Schema().dump(self)
+        for key, value in self.paths.items():
+            if isinstance(value, Path):
+                self.paths[key] = value.to_dict()
+        if errors:
+            raise ValidationError(errors)
+        errors = self.Schema().validate(data)
+        if errors:
+            raise ValidationError(errors)
+        return data

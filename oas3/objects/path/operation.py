@@ -12,7 +12,6 @@ from oas3.objects.components.request_body import RequestBody
 from oas3.objects.components.parameter import Parameter
 
 
-
 class Operation(BaseObject):
     """
     Describes a single API operation on a path.
@@ -26,17 +25,21 @@ class Operation(BaseObject):
         tags = fields.List(fields.Str)
         summary = fields.Str()
         description = fields.Str()
-        external_docs = fields.Nested(ExternalDocs.Schema, load_from='externalDocs')
+        external_docs = fields.Nested(ExternalDocs.Schema,
+                                      load_from='externalDocs',
+                                      dump_to='externalDocs')
         operation_id = fields.Str()
         parameters = fields.List(fields.Nested(Parameter.Schema))
-        request_body = fields.Nested(RequestBody.Schema, load_from='requestBody')
+        request_body = fields.Nested(RequestBody.Schema,
+                                     load_from='requestBody',
+                                     dump_to='requestBody')
         callbacks = fields.Dict(keys=fields.Str,
                                 values=fields.Dict(keys=fields.Str,
                                                    values=fields.Dict()))
         deprecated = fields.Bool()
-        security = fields.List(fields.Dict(keys=fields.Str, values=fields.List(fields.Str)))
+        security = fields.List(fields.Dict(keys=fields.Str,
+                                           values=fields.List(fields.Str)))
         servers = fields.List(fields.Nested(Server.Schema))
-
 
         def represents(self):
             return Operation

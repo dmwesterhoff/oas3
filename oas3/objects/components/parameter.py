@@ -19,14 +19,18 @@ class Parameter(BaseObject):
 
     class Schema(BaseSchema):
         name = fields.Str(required=True)
-        location = fields.Str(required=True, load_from='in')
+        location = fields.Str(required=True,
+                              load_from='in',
+                              dump_to='in')
         description = fields.Str()
         required = fields.Bool()
         deprecated = fields.Bool()
-        allow_empty_value = fields.Bool(load_from='allowEmptyValue')
+        allow_empty_value = fields.Bool(load_from='allowEmptyValue',
+                                        dump_to='allowEmptyValue')
         style = fields.Str()
         explode = fields.Bool()
-        allow_reserved = fields.Bool(load_from='allowReserved')
+        allow_reserved = fields.Bool(load_from='allowReserved',
+                                     dump_to='allowReserved')
         schema = fields.Dict()
         example = fields.Raw()
         examples = fields.Dict(keys=fields.Str, values=fields.Dict)
