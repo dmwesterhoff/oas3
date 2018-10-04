@@ -38,8 +38,8 @@ class Server(BaseObject):
     """
 
     class Schema(BaseSchema):
-        url = fields.Str(required=True)
-        description = fields.Url()
+        url = fields.Url(required=True)
+        description = fields.Str()
         variables = fields.Dict(keys=fields.Str,
                                 values=fields.Nested(ServerVariable.Schema))
 
