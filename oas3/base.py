@@ -159,12 +159,12 @@ class BaseObject:
         """
         try:
             return cls.from_yaml(data)
-        except:
-            pass
+        except Exception as e:
+            print(str(e))
         try:
             return cls.from_json(data)
-        except:
-            pass
+        except Exception as e:
+            print(str(e))
         raise ValidationError('Unable to detect valid JSON or YAML in data.')
 
     def to_dict(self):

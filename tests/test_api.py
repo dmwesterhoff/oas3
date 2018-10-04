@@ -158,6 +158,14 @@ class PetSchema:
     """
 
 
+class PetsSchema():
+    """
+    type: array
+    items:
+      $ref: "#/components/schemas/Pet"
+    """
+
+
 def test_load_info_docstring():
     info = Info.from_docstring(SpecInfo)
     assert 'termsOfService' in info.to_dict()
@@ -172,7 +180,7 @@ def test_compile_spec():
     assert 'paths' in dictionary
     spec.to_json()
     spec.components.schemas['Pet'] = Schema.from_docstring(PetSchema)
-    spec.to_json()
+    spec.components.schemas['Pets'] = Schema.from_docstring(PetsSchema)
 
 
 def test_from_url_json():

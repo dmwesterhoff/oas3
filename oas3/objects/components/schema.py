@@ -56,9 +56,10 @@ class Schema(BaseObject):
         def represents(self):
             return Schema
 
-    def __init__(self, properties=None, required=None, schema_type=None, all_of=None, example=None):
+    def __init__(self, properties=None, required=None, schema_type=None, all_of=None, example=None, items=None):
         self.properties = properties
         self.required = required
         self.schema_type = schema_type
         self.all_of = all_of
         self.example = example
+        self.items = items
