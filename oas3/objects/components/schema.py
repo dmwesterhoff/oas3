@@ -39,7 +39,7 @@ class Schema(BaseObject):
         #one_of =
         #any_of =
         #not_of =
-        #items =
+        items = fields.Dict()
         properties = fields.Dict()
         #additional_properties =
         #description =
