@@ -67,7 +67,8 @@ class Info(BaseObject):
         def represents(self):
             return Info
 
-    def __init__(self, title, version, description=None, terms_of_service=None, contact=None, license=None):
+    def __init__(self, title, version, description=None,
+                 terms_of_service=None, contact=None, license=None):
         self.title = title
         self.version = version
         self.description = description

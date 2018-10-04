@@ -12,10 +12,10 @@ from marshmallow import fields
 from .base import BaseObject, BaseSchema
 from .objects.info import Info
 from .objects.server import Server
-from .objects.components import Components
 from .objects.tag import Tag
 from .objects.external_docs import ExternalDocs
-from .objects.path import Path
+from .objects.components import Components, Schema
+from .objects.path import Path, Operation
 from .errors import LoadingError, DumpingError, ValidationError  # NOQA
 from ._version import get_versions
 __version__ = get_versions()['version']
@@ -24,21 +24,11 @@ del get_versions
 
 class Spec(BaseObject):
     """
-    High level interface around compiling, validation parsing and loading an OAS3 spec.
-
-    The process typically involves loading data from a source, then the following occurs
-        - Data is validated
-        - Input is serialized to python objects
-        - Resolving references
-        - OAS3 is validated
-        - Reference resolved to other objects in the spec
-
-    Example:
-        >>> from oas3 import Spec
+    High level interface around compiling, validating, parsing and loading an OAS3 spec.
     """
 
     class Schema(BaseSchema):
-        openapi = fields.Str(required=True)
+        openapi = fields.Str(required=True)  # FIXME: should use default value
         info = fields.Nested(Info.Schema, required=True)
         paths = fields.Dict(required=True, keys=fields.Str, values=Path.Schema)
         servers = fields.List(fields.Nested(Server.Schema))
@@ -72,10 +62,20 @@ class Spec(BaseObject):
         self.external_docs = external_docs
 
     def to_dict(self):
+        """
+        Converts all internal data type to raw dictionaries with
+        built-in values.
+
+        :returns dict: Dictionary representing the spec
+        :raises ValidationError: Spec was incomplete or had errors
+        """
         data, errors = self.Schema().dump(self)
         for key, value in self.paths.items():
             if isinstance(value, Path):
                 self.paths[key] = value.to_dict()
+        for key, value in self.components.schemas.items():
+            if isinstance(value, Schema):
+                self.components.schemas[key] = value.to_dict()
         if errors:
             raise ValidationError(errors)
         errors = self.Schema().validate(data)

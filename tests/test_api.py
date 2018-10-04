@@ -1,4 +1,4 @@
-from oas3 import Spec, Path, Info, Components
+from oas3 import Spec, Path, Info, Components, Schema
 
 
 def test_import():
@@ -142,6 +142,22 @@ class SpecComponents:
             type: string
     """
 
+class PetSchema:
+    """
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      tag:
+        type: string
+    """
+
+
 def test_load_info_docstring():
     info = Info.from_docstring(SpecInfo)
     assert 'termsOfService' in info.to_dict()
@@ -154,7 +170,9 @@ def test_compile_spec():
     spec = Spec(info=info, openapi='3.0.0', paths=paths, components=components)
     dictionary = spec.to_dict()
     assert 'paths' in dictionary
-    json_string = spec.to_json()
+    spec.to_json()
+    spec.components.schemas['Pet'] = Schema.from_docstring(PetSchema)
+    spec.to_json()
 
 
 def test_from_url_json():

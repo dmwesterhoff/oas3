@@ -112,7 +112,8 @@ API
 
 Core
 ----
-.. autoclass:: Spec
+.. autoclass:: oas3.base.BaseObject
+.. autoclass:: oas3.Spec
 
 Exceptions
 ----------

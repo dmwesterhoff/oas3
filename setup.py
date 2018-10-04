@@ -1,13 +1,13 @@
 """
-setup.py for Flask-OAS3
-
+setup.py for oas3
 """
+
 __author__ = "Pinn Technologies, Inc."
 __email__ = "developers@pinn.ai"
 __copyright__ = "Copyright 2018, Pinn Technologies, Inc."
 
-from setuptools import setup, find_packages
 import os
+from setuptools import setup, find_packages
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 REQUIREMENTS = filter(None, open(
@@ -26,7 +26,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     install_requires=list(REQUIREMENTS),
     classifiers=[k for k in open('CLASSIFIERS').read().split('\n') if k],
-    description='A library for dealing with Open API v3 specifications in Python',
+    description='A library for dealing with OpenAPI v3 specifications in Python',
     long_description=open('README.rst').read() + open('HISTORY.rst').read(),
     packages=find_packages(exclude=["tests*"])
 )

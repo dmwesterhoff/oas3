@@ -19,7 +19,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 master_doc = 'index'
 project = u'OAS3'
-copyright = u'2018, Pinn Technologies, Inc.'
+copyright = u'2018, Pinn Technologies, Inc'
 
 version = release = oas3.__version__
 exclude_patterns = []

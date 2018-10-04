@@ -33,6 +33,7 @@ class Operation(BaseObject):
         request_body = fields.Nested(RequestBody.Schema,
                                      load_from='requestBody',
                                      dump_to='requestBody')
+        # FIXME: Use Callback.Schema
         callbacks = fields.Dict(keys=fields.Str,
                                 values=fields.Dict(keys=fields.Str,
                                                    values=fields.Dict()))
