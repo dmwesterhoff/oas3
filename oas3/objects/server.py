@@ -38,7 +38,7 @@ class Server(BaseObject):
     """
 
     class Schema(BaseSchema):
-        url = fields.Url(required=True)
+        url = fields.Str(required=True)
         description = fields.Str()
         variables = fields.Dict(keys=fields.Str,
                                 values=fields.Nested(ServerVariable.Schema))

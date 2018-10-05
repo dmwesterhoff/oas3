@@ -14,7 +14,8 @@ from .objects.info import Info
 from .objects.server import Server
 from .objects.tag import Tag
 from .objects.external_docs import ExternalDocs
-from .objects.components import Components, Schema
+from .objects.components import (Components, Schema, Response, Example, Parameter,
+                                 RequestBody, Header, SecurityScheme, Link, Callback)
 from .objects.path import Path, Operation
 from .errors import LoadingError, DumpingError, ValidationError  # NOQA
 from ._version import get_versions

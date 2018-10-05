@@ -6,7 +6,14 @@ oas3.objects.components
 from marshmallow import fields
 from oas3.base import BaseObject, BaseSchema
 from .schema import Schema
+from .response import Response
 from .example import Example
+from .parameter import Parameter
+from .request_body import RequestBody
+from .header import Header
+from .security_scheme import SecurityScheme
+from .link import Link
+from .callback import Callback
 
 
 class Components(BaseObject):
@@ -20,12 +27,37 @@ class Components(BaseObject):
     """
 
     class Schema(BaseSchema):
-        example = fields.List(fields.Nested(Example.Schema))
         schemas = fields.Dict(keys=fields.Str,
                               values=fields.Nested(Schema.Schema))
+        responses = fields.Dict()
+        parameters = fields.Dict()
+        examples = fields.Dict()
+        response_bodies = fields.Dict(load_from='responseBodies',
+                                      dump_to='responseBodies')
+        headers = fields.Dict()
+        security_schemes = fields.Dict(load_from='securitySchemes',
+                                       dump_to='securitySchemes')
+        links = fields.Dict()
+        callbacks = fields.Dict()
 
         def represents(self):
             return Components
 
-    def __init__(self, schemas=None):
+    def __init__(self,
+                 schemas=None,
+                 responses=None,
+                 parameters=None,
+                 examples=None,
+                 response_bodies=None,
+                 headers=None,
+                 security_schemes=None,
+                 links=None,
+                 callbacks=None):
         self.schemas = schemas
+        self.responses = responses
+        self.examples = examples
+        self.response_bodies = response_bodies
+        self.headers = headers
+        self.security_schemes = security_schemes
+        self.links = links
+        self.callbacks = callbacks
