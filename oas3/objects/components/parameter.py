@@ -18,9 +18,8 @@ class Parameter(BaseObject):
     """
 
     class Schema(BaseSchema):
-        name = fields.Str(required=True)
-        location = fields.Str(required=True,
-                              load_from='in',
+        name = fields.Str()
+        location = fields.Str(load_from='in',
                               dump_to='in')
         description = fields.Str()
         required = fields.Bool()
@@ -38,7 +37,19 @@ class Parameter(BaseObject):
         def represents(self):
             return Parameter
 
-    def __init__(self, name, location, description=None, required=None, deprecated=None, allow_empty_value=None, style=None, explode=None, allow_reserved=None, schema=None, example=None, examples=None):
+    def __init__(self,
+                 name=None,
+                 location=None,
+                 description=None,
+                 required=None,
+                 deprecated=None,
+                 allow_empty_value=None,
+                 style=None,
+                 explode=None,
+                 allow_reserved=None,
+                 schema=None,
+                 example=None,
+                 examples=None):
         self.name = name
         self.location = location
         self.description = description

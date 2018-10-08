@@ -21,7 +21,9 @@ class Operation(BaseObject):
     """
 
     class Schema(BaseSchema):
-        responses = fields.Dict(required=True, keys=fields.Str, values=fields.Nested(Response.Schema))
+        responses = fields.Dict(required=True,
+                                keys=fields.Str,
+                                values=fields.Nested(Response.Schema))
         tags = fields.List(fields.Str)
         summary = fields.Str()
         description = fields.Str()
