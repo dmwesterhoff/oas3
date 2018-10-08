@@ -31,7 +31,7 @@ class Operation(BaseObject):
                                       load_from='externalDocs',
                                       dump_to='externalDocs')
         operation_id = fields.Str()
-        parameters = fields.List(fields.Nested(Parameter.Schema))
+        parameters = fields.List(fields.Dict())
         request_body = fields.Nested(RequestBody.Schema,
                                      load_from='requestBody',
                                      dump_to='requestBody')
